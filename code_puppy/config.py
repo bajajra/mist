@@ -321,7 +321,7 @@ def ensure_config_exists():
         # Note: Using sys.stdout here for initial setup before messaging system is available
         import sys
 
-        sys.stdout.write("🌫️ Let's get Mist ready!\n")
+        sys.stdout.write("🫧 Let's get Mist ready!\n")
         sys.stdout.flush()
         for key in missing:
             if key == "mist_name":
@@ -429,6 +429,14 @@ def get_config_keys():
         "frontend_emitter_max_recent_events",
         "frontend_emitter_queue_size",
         "permission_mode",
+        "agent_mode",
+        "injection_probe",
+        "shell_safe_prefixes",
+        "denial_consecutive_threshold",
+        "denial_total_threshold",
+        "sandbox_backend",
+        "sandbox_container_runtime",
+        "sandbox_container_image",
     ]
     # 'enable_dbos' is reserved for the dbos_durable_exec plugin and is read
     # via the generic get_value API; intentionally not in default_keys.
@@ -1931,7 +1939,7 @@ def auto_save_session_if_enabled() -> bool:
             pass
 
         emit_info(
-            f"🌫️ Auto-saved session: {metadata.message_count} messages "
+            f"💨 Auto-saved session: {metadata.message_count} messages "
             f"({metadata.total_tokens} tokens){stats_suffix}"
         )
 

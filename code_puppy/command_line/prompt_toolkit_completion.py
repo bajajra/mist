@@ -583,7 +583,7 @@ def get_prompt_with_active_model(base: str = ">>> "):
         cwd_display = cwd
     return FormattedText(
         [
-            ("bold", "🌫️ "),
+            ("bold", "🫧 "),
             ("class:mist", f"{mist_name}"),
             ("", " "),
             ("class:agent", f"[{_normalize_emoji_spacing(agent_display)}] "),
@@ -658,6 +658,14 @@ async def get_input_with_combined_completion(
     )
     # Add custom key bindings and multiline toggle
     bindings = KeyBindings()
+
+    # Optional prompt bindings are supplied by plugins through this seam.
+    try:
+        from code_puppy.callbacks import on_register_keybindings
+
+        on_register_keybindings(bindings)
+    except Exception:
+        pass
 
     # Multiline mode state
     multiline = {"enabled": False}
